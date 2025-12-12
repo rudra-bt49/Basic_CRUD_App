@@ -25,3 +25,5 @@ Docker - (Using postgres:latest image)
 :O config - Database connection
 :O middleware - functions
 :O public - storing assets : images, audio, video, files
+
+# Product CRUD operations and API Testing in Postman

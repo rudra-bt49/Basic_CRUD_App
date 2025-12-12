@@ -1,6 +1,8 @@
 import { createProduct, 
     getAllProducts, 
-    getSpecificProduct
+    getSpecificProduct,
+    updateProduct, 
+    deleteProduct
  } from "../models/product.model.js";
 
 const createProductController = async (req, res) => {
@@ -58,4 +60,46 @@ const getSpecificProductController = async(req, res) => {
         })
     }
 }
-export { createProductController, getAllProductsController, getSpecificProductController };
+
+const updateProductController = async(req, res) => {
+    try {
+        const product = await updateProduct(req.params.id, req.body)
+        if(!product){
+            return res.status(404).json({
+                message: "Product not found..."
+            })
+        }
+        
+        return res.status(200).json({
+            message: "Product Updated successfully",
+            data: product
+        })
+    } catch (error) {
+        console.log("Internal Server Error!")
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+const deleteProductController = async(req, res) => {
+    try {
+        await deleteProduct(req.params.id)
+
+        return res.status(200).json({
+            message: "Product deleted successfully!",
+        })
+    } catch (error) {
+        console.log("Internal Server Error!")
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+export { createProductController, 
+    getAllProductsController, 
+    getSpecificProductController, 
+    updateProductController,
+    deleteProductController
+};
