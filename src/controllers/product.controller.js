@@ -3,7 +3,7 @@ import { createProduct,
     getSpecificProduct,
     updateProduct, 
     deleteProduct
- } from "../models/product.model.js";
+ } from "../services/product.service.js";
 
 const createProductController = async (req, res) => {
   try {

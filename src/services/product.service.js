@@ -12,7 +12,7 @@ const createProduct = async (product) => {
 }
 
 const getAllProducts = async () => {
-    const products = await pool.query("SELECT * FROM products");
+    const products = await pool.query("SELECT * FROM products ORDER BY id ASC");
     return products.rows;
 }
 
@@ -50,9 +50,15 @@ const deleteProduct = async(id) => {
     return result.rows[0]
 }
 
-export { createProduct, 
+export { 
+    createProduct, 
     getAllProducts, 
     getSpecificProduct, 
     updateProduct, 
     deleteProduct 
 };
+
+
+
+
+
